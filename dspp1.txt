@@ -1,0 +1,129 @@
+max=20
+class employee:
+    def __init__(self):
+      self.name=''
+      self.code=0
+      self.designation=''
+      self.exp=0
+      self.age=0
+
+num=0
+emp=[employee() for i in range(max)]
+
+def build():
+    global num,emp
+
+    print("Build the table")
+    print("maximum entries can be",max)
+
+    num-int(input("enter the number of entries required;"))
+
+    if num>max:
+        print("Maximum number of entries are 20")
+        num=20
+
+    print("Enter the following data:")
+    for i in range(num):
+        emp[i].name=input("name:")
+        emp[i].code=int(input("Employee ID:"))
+        emp[i].designation=input("designation:")
+        emp[i].exp=int(input("Experience:"))
+        emp[i].age=int(input("age:"))
+
+    showMenu()
+
+def insert():
+    global num,emp
+
+    if num<max:
+        i=num
+        num+=1
+
+        print("Enter the information of the Employee:")
+        emp[i].name=input("Name:")
+        emp[i].code = int(input("Employee ID:"))
+        emp[i].designation = input("designation:")
+        emp[i].exp = int(input("Experience:"))
+        emp[i].age = int(input("age:"))
+    else:
+        print("Employee Table Full")
+
+    showMenu()
+
+def deleteindex(i):
+    global num,emp
+
+    for j in range(i,num-1):
+        emp[j].name=emp[j+1].name
+        emp[j].code=emp[j+1].code
+        emp[j].designation=emp[j+1].designation
+        emp[j].exp=emp[j+1].exp
+        emp[j].age=emp[j+1].age
+
+def deleterecord ():
+    global num,emp
+
+    code=int(input("Enter the employee id to delete record: "))
+    for i in range(num):
+        if emp[i].code==code:
+            deleteindex(i)
+            num-=1
+            break
+    showMenu()
+
+def searchrecord():
+    global num,emp
+
+    code=int(input("Enter the Employee Id To search record:"))
+
+    for i in range(num):
+
+        if emp[i].code==code:
+            print("name:",emp[i].name)
+            print("Employee id :",emp[i].code)
+            print("designation:",emp[i].designation)
+            print("Experience:",emp[i].age)
+            break
+
+    showMenu()
+
+def searchrecord():
+    global num,emp
+
+    code=int(input("Enter the employee id to search record"))
+
+    for i in range(num):
+
+        if emp[i].code==code:
+            print("name:",emp[i].name)
+            print("employee id:",emp[i].code)
+            print("designation:",emp[i].designation)
+            print("experience:",emp[i].exp)
+            print("age:",emp[i].age)
+            break
+
+
+
+def showMenu():
+    print("Available Options:\n")
+    print("Build Table       (1)")
+    print("Insert New Entry  (2)")
+    print("Delete Entry      (3)")
+    print("Search a Record    (4)")
+    print("exit                (5)")
+    option=int(input())
+    if option==1:
+        build()
+    elif option==2:
+        insert()
+    elif option==3:
+       deleterecord()
+    elif option==4:
+       searchrecord()
+    elif option==5:
+        return
+    else:
+      print("Expected Options")
+      print("are 1/2/3/4/5 ")
+      showMenu()
+showMenu()
